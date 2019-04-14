@@ -3,6 +3,6 @@ applications:
   - name: address-book
     path: build/libs/address-book.jar
     routes:
-      - route: address-book-[UNIQUE_SUFFIX].[CF_DOMAIN]
+      - route: address-book-epam.cfapps.io
     env:
       WELCOME_MESSAGE: Hello from the review environment
