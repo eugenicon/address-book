@@ -1,5 +1,6 @@
 package com.epam.addressbook;
 
+import com.epam.addressbook.data.entity.Accommodation;
 import com.jayway.jsonpath.DocumentContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;

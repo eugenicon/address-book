@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WelcomeController {
     private final String string;
 
-    public WelcomeController(@Value("${WELCOME_MESSAGE}") String string) {
+    public WelcomeController(@Value("${WELCOME_MESSAGE:NOT SET}") String string) {
         this.string = string;
     }
 
