@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class InMemoryAccommodationRepository implements AccommodationRepository {
     private final Map<Long, Accommodation> data = new HashMap<>();
 

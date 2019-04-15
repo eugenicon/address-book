@@ -1,5 +1,8 @@
 package com.epam.addressbook;
 
+import com.epam.addressbook.data.entity.Accommodation;
+import com.epam.addressbook.data.repository.AccommodationRepository;
+import com.epam.addressbook.data.repository.JdbcAccommodationRepository;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.junit.Before;
 import org.junit.Test;
