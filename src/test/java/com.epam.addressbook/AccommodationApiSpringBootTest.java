@@ -6,9 +6,10 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AddressBookApplication.class, webEnvironment = RANDOM_PORT)
 public class AccommodationApiSpringBootTest {
-
-    @Autowired
+    @LocalServerPort
+    private String port;
     private TestRestTemplate restTemplate;
 
     private final long addressId = 123L;
@@ -44,6 +45,12 @@ public class AccommodationApiSpringBootTest {
         jdbcTemplate.execute("TRUNCATE ACCOMMODATION");
 
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
+        RestTemplateBuilder builder = new RestTemplateBuilder()
+                .rootUri("http://localhost:" + port)
+                .basicAuthentication("user", "password");
+
+        restTemplate = new TestRestTemplate(builder);
     }
 
     @Test

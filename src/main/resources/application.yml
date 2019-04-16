@@ -1,0 +1,5 @@
+management.endpoints.web.exposure:
+  exclude: shutdown
+  include: \*
+
+https.disabled: true

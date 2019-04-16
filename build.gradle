@@ -26,6 +26,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.6'
 
     compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-security'
     
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -34,14 +35,16 @@ def devDbUrl = "jdbc:mysql://localhost:3306/ADDRESS_BOOK_DEV?user=address_book&u
 bootRun.environment([
         "WELCOME_MESSAGE": "hello",
         "SPRING_DATASOURCE_URL": devDbUrl,
-        "MANAGEMENT_SECURITY_ENABLED": false
+        "MANAGEMENT_SECURITY_ENABLED": false,
+        "https.disabled": true
 ])
 
 def testDbUrl = "jdbc:mysql://localhost:3306/ADDRESS_BOOK_TEST?user=address_book&useSSL=false&useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false"
 test.environment([
         "WELCOME_MESSAGE": "Hello from test",
         "SPRING_DATASOURCE_URL": testDbUrl,
-        "MANAGEMENT_SECURITY_ENABLED": false
+        "MANAGEMENT_SECURITY_ENABLED": false,
+        "https.disabled": true
 ])
 
 springBoot {
