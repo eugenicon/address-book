@@ -6,3 +6,4 @@ applications:
       - route: address-book-epam.cfapps.io
     env:
       WELCOME_MESSAGE: Hello from the review environment
+      MANAGEMENT_SECURITY_ENABLED: false
