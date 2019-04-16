@@ -3,12 +3,15 @@ package com.epam.addressbook;
 import com.epam.addressbook.controller.rest.AccommodationController;
 import com.epam.addressbook.data.entity.Accommodation;
 import com.epam.addressbook.data.repository.AccommodationRepository;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +28,12 @@ public class AccommodationControllerTest {
     @Before
     public void setUp() {
         accommodationRepository = mock(AccommodationRepository.class);
-        subject = new AccommodationController(accommodationRepository);
+        MeterRegistry meterRegistry = mock(MeterRegistry.class);
+        when(meterRegistry.counter(anyString())).thenReturn(mock(Counter.class));
+        when(accommodationRepository.findAll()).thenReturn(Optional.of(Collections.emptyList()));
+        when(meterRegistry.gauge(anyString(), anyInt())).thenReturn(0);
+
+        subject = new AccommodationController(accommodationRepository, meterRegistry);
     }
 
     @Test
